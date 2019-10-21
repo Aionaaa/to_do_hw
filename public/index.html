@@ -7,6 +7,19 @@
 <script src="./js/bundle.js"></script>
   </head>
   <body>
-
+    <div id="app">
+      <ul>
+        <li v-for="(item, index) in items" v-bind:class="item.isDone ? 'done':'not-done'">
+          <span>{{item.task}}</span>
+          <span v-if="item.isDone">Done!</span>
+          <button v-if="!item.isDone" v-on:click="doItem(index)">Complete Task</button>
+        </li>
+      </ul>
+      <form v-on:submit.prevent="saveNewItem">
+        <label for="new-item">Add a new Task</label>
+        <input id="new-item" type="text" v-model="newItem">
+        <input type="submit" value="Save new task">
+      </form>
+    </div>
   </body>
 </html>
